@@ -77,6 +77,7 @@ public class ModManager {
 		/*
 		 * World
 		 */
+		mods.add(new NoEntityAI("NoEntityAI", Category.WORLD));
 		mods.add(new Nuker("Nuker", Category.WORLD));
 		mods.add(new Timer("Timer", Category.WORLD));
 	}
