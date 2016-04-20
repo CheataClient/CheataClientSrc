@@ -27,6 +27,8 @@ public class Client {
 	private static String name = "Cheata";
 	private static String ver = "Pre";
 	private static String auth = "LUNiX";
+	private static int color = 0x75ffb825;
+	private static int colorDarker = 0xffb82500;
 	
 	private static ModManager modManager;
 	private static FileManager fileManager;
@@ -109,5 +111,13 @@ public class Client {
 
 	public static void setInGame(boolean isInGame) {
 		Client.isInGame = isInGame;
+	}
+
+	public static int getColor() {
+		return color;
+	}
+
+	public static int getColorDarker() {
+		return colorDarker;
 	}
 }

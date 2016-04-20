@@ -28,16 +28,15 @@ public class GreanIngameGui extends GuiIngame{
 		Client.getFunctionMethods().onRender();
 		
 		int countY = 1;
-		
 		for(Mod mod : Client.getModManager().mods){
 			if(mod.isEnabled() && !mod.isCategory(Category.NONE) && !(mod.getClass() == Client.getModManager().getMod(Panic.class).getClass())){
 				mod.onRender();
-				drawString(Minecraft.getMinecraft().fontRendererObj, mod.getName(), 1, 12 * countY, 0x00FF0000);
+				drawString(Minecraft.getMinecraft().fontRendererObj, mod.getName(), 1, 12 * countY, Client.getColor());
 				countY++;
 			}
 		}
 		
-		drawString(Minecraft.getMinecraft().fontRendererObj, Client.getName() + " - " + Client.getVer(), 1, 2, 0xFFFFFFFF);
+		drawString(Minecraft.getMinecraft().fontRendererObj, Client.getName() + " - " + Client.getVer(), 1, 2, Client.getColorDarker());
 
 		Client.getGuiManager().renderPinned();
 				
