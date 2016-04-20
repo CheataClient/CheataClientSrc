@@ -1,0 +1,29 @@
+/*
+ * Copyright © 2015 - 2017 Lunix and contributors 
+ * All rights reserved.
+ * 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+package com.lunix.cheata.mod.mods.player;
+
+import com.lunix.cheata.Client;
+import com.lunix.cheata.mod.Mod;
+import com.lunix.cheata.mod.mods.movement.WaterWalk;
+import com.lunix.cheata.utils.Category;
+
+public class NoWater extends Mod{
+
+	public NoWater(String name, Category category) {
+		super(name, category);
+	}
+	
+	@Override
+	public void onEnable() {
+		if(Client.getModManager().getMod(WaterWalk.class).isEnabled()){
+			Client.getModManager().getMod(WaterWalk.class).setEnabled(false);
+		}
+	}
+
+}
