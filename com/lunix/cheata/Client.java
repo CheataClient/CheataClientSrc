@@ -35,7 +35,7 @@ public class Client {
 	private static GuiManager guiManager;
 	private static GuiManagerDisplayScreen gui;
 	
-	public static boolean isInGame;
+	private static boolean isInGame;
 	
 	public static void load(){
 		Display.setTitle(name + " - " + ver);
