@@ -35,6 +35,8 @@ public class Client {
 	private static GuiManager guiManager;
 	private static GuiManagerDisplayScreen gui;
 	
+	public static boolean isInGame;
+	
 	public static void load(){
 		Display.setTitle(name + " - " + ver);
 
@@ -100,5 +102,12 @@ public class Client {
 	public static ModValueManager getValueManager(){
 		return valueManager;
 	}
-	
+
+	public static boolean isInGame() {
+		return isInGame;
+	}
+
+	public static void setInGame(boolean isInGame) {
+		Client.isInGame = isInGame;
+	}
 }

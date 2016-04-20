@@ -96,12 +96,15 @@ public class Mod {
 	}
 	
 	public void setEnabled(boolean state){
-		onToggle();
+		if(Client.isInGame())
+			onToggle();
 		if(state){
-			onEnable();
+			if(Client.isInGame())
+				onEnable();
 			this.isEnabled = true;
 		}else{
-			onDisable();
+			if(Client.isInGame())
+				onDisable();
 			this.isEnabled = false;
 		}
 	}

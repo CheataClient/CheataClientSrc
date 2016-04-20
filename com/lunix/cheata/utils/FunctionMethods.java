@@ -17,7 +17,7 @@ public class FunctionMethods {
 	
 	public static void	onUpdate(){
 		for(Mod mod : Client.getModManager().mods){
-			if(mod.isEnabled()){
+			if(mod.isEnabled() && Client.isInGame() && Client.isInGame()){
 				mod.onUpdate();
 			}
 		}
@@ -25,7 +25,7 @@ public class FunctionMethods {
 	
 	public static void onRender(){
 		for(Mod mod : Client.getModManager().mods){
-			if(mod.isEnabled()){
+			if(mod.isEnabled() && Client.isInGame()){
 				mod.onRender();
 			}
 		}
@@ -33,7 +33,7 @@ public class FunctionMethods {
 	
 	public static void onClickLeft(){
 		for(Mod mod : Client.getModManager().mods){
-			if(mod.isEnabled()){
+			if(mod.isEnabled() && Client.isInGame()){
 				mod.onClickLeft();
 			}
 		}
@@ -41,7 +41,7 @@ public class FunctionMethods {
 	
 	public static void onClickRight(){
 		for(Mod mod : Client.getModManager().mods){
-			if(mod.isEnabled()){
+			if(mod.isEnabled() && Client.isInGame()){
 				mod.onClickRight();
 			}
 		}
