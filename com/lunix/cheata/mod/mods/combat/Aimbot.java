@@ -27,43 +27,24 @@ public class Aimbot extends Mod{
 		super(name, category);
 	}
 	
-	public static boolean mobs = true;
-	
 	@Override
 	public void onUpdate() {
 		List list = mc.theWorld.playerEntities;
 		
 		for(int k = 0; k < list.size(); k++){
-			if(mobs){
-				if(((Entity) list.get(k)).getEntityId() == mc.thePlayer.getEntityId()){
-					continue;
-				}
-				
-				Entity ent = (Entity) list.get(k);
-				
-				if(mc.thePlayer.getDistanceToEntity(ent) > mc.thePlayer.getDistanceToEntity((Entity) list.get(k))){
-					ent = (Entity) list.get(k);
-				}
-				
-				float f = mc.thePlayer.getDistanceToEntity(ent);
-				if ( f < 5F && mc.thePlayer.canEntityBeSeen(ent)){
-					this.faceEntity(ent);
-				}
-			}else{
-				if(((EntityPlayer) list.get(k)).getName() == mc.thePlayer.getName()){
-					continue;
-				}
-				
-				EntityPlayer entPlayer = (EntityPlayer) list.get(k);
-				
-				if(mc.thePlayer.getDistanceToEntity(entPlayer) > mc.thePlayer.getDistanceToEntity((Entity) list.get(k))){
-					entPlayer = (EntityPlayer) list.get(k);
-				}
-				
-				float f = mc.thePlayer.getDistanceToEntity(entPlayer);
-				if ( f < 5F && mc.thePlayer.canEntityBeSeen(entPlayer)){
-					this.faceEntity(entPlayer);
-				}
+			if(((EntityPlayer) list.get(k)).getName() == mc.thePlayer.getName()){
+				continue;
+			}
+			
+			EntityPlayer entPlayer = (EntityPlayer) list.get(k);
+			
+			if(mc.thePlayer.getDistanceToEntity(entPlayer) > mc.thePlayer.getDistanceToEntity((Entity) list.get(k))){
+				entPlayer = (EntityPlayer) list.get(k);
+			}
+			
+			float f = mc.thePlayer.getDistanceToEntity(entPlayer);
+			if ( f < 5F && mc.thePlayer.canEntityBeSeen(entPlayer)){
+				this.faceEntity(entPlayer);
 			}
 		}
 	}
