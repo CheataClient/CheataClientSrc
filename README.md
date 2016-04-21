@@ -4,11 +4,12 @@ A free open-source pre-release version of a minecraft 1.9 hacked client.
 # Mods
 Current mod in Pre-Release:
 Combat: 
-Aimbot, 
-KillAura (Player), 
+Aimbot (Player only), 
+HitAimbot (Player only),
+KillAura (Player only), 
 
 Misc: 
-Anti-Fire, 
+AntiFire, 
 AutoFish, 
 Derp (Legit and Packet), 
 Drop (One and Stack), 
@@ -33,7 +34,8 @@ Step (Legit and Mod),
 WaterWalk (Legit and Mod), , 
 
 Player: 
-Anti-Afk, 
+AntiAfk, 
+AutoMine,
 AutoRespawn, 
 FastPlace, 
 FreeCam, 
@@ -44,5 +46,6 @@ NoWater,
 NoWeb, 
 
 World: 
+NoEntityAttackAI (Singleplayer only),
 Nuker,
 Timer, 
