@@ -17,9 +17,9 @@ import com.lunix.cheata.mod.Mod;
 import com.lunix.cheata.mod.mods.misc.Panic;
 import com.lunix.cheata.utils.Category;
 
-public class GreanIngameGui extends GuiIngame{
+public class CheataIngameGui extends GuiIngame{
 
-	public GreanIngameGui(Minecraft mcIn) {
+	public CheataIngameGui(Minecraft mcIn) {
 		super(mcIn);
 	}
 	
