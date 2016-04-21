@@ -9,6 +9,7 @@
 package com.lunix.cheata.gui;
 
 import java.awt.Desktop;
+import java.awt.FontMetrics;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -68,6 +69,10 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
     private static final Logger logger = LogManager.getLogger();
     private static final Random RANDOM = new Random();
 
+    /** Boolean for AutoUpdater **/
+    private boolean needsUpdate;
+    private String updateVersion;
+    
     /** Counts the number of screen updates. */
     private float updateCounter;
 
@@ -130,22 +135,13 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
 			    	while ((inputLine = in.readLine()) != null) 
 			    		buffer.append(inputLine);
 					in.close();
-			    	if(Double.parseDouble(buffer.toString()) != Client.getVer()){
+			    	if(Double.parseDouble(buffer.toString()) > Client.getVer()){
 			    		mc.logger.info("Latest version is " + buffer.toString());
 			    		mc.logger.info("Your version is " + Double.toString(Client.getVer()));
-			    		try{
-							try {
-				    			final URL url = new URL("https://github.com/CheataClient/CheataClient");
-								URI uri = url.toURI();                                                                                                                                              
-				                Desktop.getDesktop().browse(uri);
-							} catch (URISyntaxException e) {
-								e.printStackTrace();
-							}                                    
-			    		}catch (IOException e){
-			    			e.printStackTrace();
-			    		}
+			    		updateVersion = buffer.toString();
+			    		needsUpdate = true;
 			    	}else{
-			    		mc.logger.info("Version is " + Double.toString(Client.getVer()));
+			    		mc.logger.info("Current pre-release is " + Double.toString(Client.getVer()));
 			    	}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -279,9 +275,14 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
         {
             this.addSingleplayerMultiplayerButtons(j, 24);
         }
-
-        this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 8, 98, 20, I18n.format("menu.options", new Object[0])));
-        this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 8, 98, 20, I18n.format("menu.quit", new Object[0])));
+        
+        if(!needsUpdate){
+        	this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72, 98, 20, I18n.format("menu.options", new Object[0])));
+            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72, 98, 20, I18n.format("menu.quit", new Object[0])));
+        }else{
+        	this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 24, 98, 20, I18n.format("menu.options", new Object[0])));
+            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 24, 98, 20, I18n.format("menu.quit", new Object[0])));
+        }
 
         synchronized (this.threadLock)
         {
@@ -316,6 +317,8 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer", new Object[0])));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer", new Object[0])));
         this.buttonList.add(new GuiButton(5, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("Language", new Object[0])));
+        if (needsUpdate)
+    		this.buttonList.add(new GuiButton(24, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 3, I18n.format("Update " + Client.getName(), new Object[0])));
     }
 
     /**
@@ -378,6 +381,16 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
             {
                 this.mc.displayGuiScreen(new GuiYesNo(this, I18n.format("selectWorld.deleteQuestion", new Object[0]), "\'" + worldinfo.getWorldName() + "\' " + I18n.format("selectWorld.deleteWarning", new Object[0]), I18n.format("selectWorld.deleteButton", new Object[0]), I18n.format("gui.cancel", new Object[0]), 12));
             }
+        }
+        if (button.id == 24)
+        {
+			try {
+    			final URL url = new URL("https://github.com/CheataClient/CheataClient");
+				URI uri = url.toURI();                                                                                                                                              
+                Desktop.getDesktop().browse(uri);
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
         }
     }
 
@@ -584,6 +597,10 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
     	String var1 = "Cheata";
         this.drawCenteredString(mc.fontRendererObj, var1, ((this.width / 7) / 2), ((this.height / 6) / 4) - 5, 0xffb825);
     	GL11.glPopMatrix();
+    	if(needsUpdate){
+    		this.drawRect(0, 0, this.width, 20, Client.getColorDarker());
+    		this.drawCenteredString(mc.fontRendererObj, "New version of Cheata found : " + updateVersion, this.width / 2, 6, Client.getColor());
+    	}
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
