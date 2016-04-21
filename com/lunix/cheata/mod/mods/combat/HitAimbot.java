@@ -24,46 +24,23 @@ public class HitAimbot extends Mod{
 	public HitAimbot(String name, Category category) {
 		super(name, category);
 	}
-
-	public static boolean mobs = true;
 	
 	@Override
 	public void onUpdate() {
-		List list = mc.theWorld.playerEntities;
-		
-		for(int k = 0; k < list.size(); k++){
-			if(mc.objectMouseOver.entityHit != null){
-				if(mobs){
-					if(mc.objectMouseOver.entityHit.getEntityId() == mc.thePlayer.getEntityId()){
-						continue;
-					}
-					
-					Entity ent = mc.objectMouseOver.entityHit;
-					
-					if(mc.thePlayer.getDistanceToEntity(ent) > mc.thePlayer.getDistanceToEntity((Entity) mc.objectMouseOver.entityHit)){
-						ent = mc.objectMouseOver.entityHit;
-					}
-					
-					float f = mc.thePlayer.getDistanceToEntity(ent);
-					if ( f < 5F && mc.thePlayer.canEntityBeSeen(ent)){
-						this.faceEntity(ent);
-					}
-				}else{
-					if(!(mc.objectMouseOver.entityHit instanceof EntityPlayer)){
-						continue;
-					}
-					
-					EntityPlayer entPlayer = (EntityPlayer) mc.objectMouseOver.entityHit;
-					
-					if(mc.thePlayer.getDistanceToEntity(entPlayer) > mc.thePlayer.getDistanceToEntity((Entity) mc.objectMouseOver.entityHit)){
-						entPlayer = (EntityPlayer) mc.objectMouseOver.entityHit;
-					}
-					
-					float f = mc.thePlayer.getDistanceToEntity(entPlayer);
-					if ( f < 5F && mc.thePlayer.canEntityBeSeen(entPlayer)){
-						this.faceEntity(entPlayer);
-					}
-				}
+		if(mc.objectMouseOver.entityHit != null){
+			if(!(mc.objectMouseOver.entityHit instanceof EntityPlayer)){
+				mc.objectMouseOver.entityHit = null;
+			}
+			
+			EntityPlayer entPlayer = (EntityPlayer) mc.objectMouseOver.entityHit;
+			
+			if(mc.thePlayer.getDistanceToEntity(entPlayer) > mc.thePlayer.getDistanceToEntity((Entity) mc.objectMouseOver.entityHit)){
+				entPlayer = (EntityPlayer) mc.objectMouseOver.entityHit;
+			}
+			
+			float f = mc.thePlayer.getDistanceToEntity(entPlayer);
+			if ( f < 5F && mc.thePlayer.canEntityBeSeen(entPlayer)){
+				this.faceEntity(entPlayer);
 			}
 		}
 	}
