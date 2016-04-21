@@ -42,6 +42,7 @@ public class ModManager {
 		 * Combat
 		 */
 		mods.add(new Aimbot("Aimbot", Category.COMBAT));
+		mods.add(new HitAimbot("HitAimbot", Category.COMBAT));
 		mods.add(new KillAura("KillAura", Category.COMBAT));
 		
 		/*
