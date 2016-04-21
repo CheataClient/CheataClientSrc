@@ -13,7 +13,6 @@ import java.util.Collections;
 
 import org.lwjgl.input.Keyboard;
 
-import com.lunix.cheata.gui.GuiMod;
 import com.lunix.cheata.mod.mods.combat.*;
 import com.lunix.cheata.mod.mods.misc.*;
 import com.lunix.cheata.mod.mods.movement.*;
@@ -25,8 +24,6 @@ public class ModManager {
 	public static ArrayList<Mod> mods = new ArrayList<Mod>();
 
 	public static void setup(){
-		mods.add(new GuiMod("Click Gui", Keyboard.KEY_RSHIFT, Category.NONE));
-		
 		/*
 		 * Misc
 		 */

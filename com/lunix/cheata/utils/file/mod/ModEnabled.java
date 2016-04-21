@@ -19,7 +19,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.lunix.cheata.Client;
-import com.lunix.cheata.gui.GuiMod;
 import com.lunix.cheata.mod.Mod;
 import com.lunix.cheata.utils.file.FileExtender;
 import com.lunix.cheata.utils.file.FileManager;
@@ -35,10 +34,8 @@ public class ModEnabled extends FileExtender{
 	public static void saveMods() {
 		JsonObject json = new JsonObject();
 		for(Mod mod : Client.getModManager().mods){
-			if(!mod.getName().equalsIgnoreCase(Client.getModManager().getMod(GuiMod.class).getName())){
-				json.addProperty(mod.getName(), mod.isEnabled());
-				FileManager.WriteFile(fileName, json.toString());
-			}
+			json.addProperty(mod.getName(), mod.isEnabled());
+			FileManager.WriteFile(fileName, json.toString());
 		}
 	}
 
