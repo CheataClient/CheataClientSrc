@@ -25,7 +25,7 @@ import com.lunix.cheata.utils.mod.ModValueManager;
 public class Client {
 
 	private static String name = "Cheata";
-	private static String ver = "Pre";
+	private static double ver = 1.0;
 	private static String auth = "LUNiX";
 	private static int color = 0x75ffb825;
 	private static int colorDarker = 0xffb82500;
@@ -81,7 +81,7 @@ public class Client {
 		return name;
 	}
 
-	public static String getVer() {
+	public static double getVer() {
 		return ver;
 	}
 
