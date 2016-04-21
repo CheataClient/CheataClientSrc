@@ -48,7 +48,8 @@ public class ModManager {
 		 * Player
 		 */
 		mods.add(new AntiAfk("Anti-Afk", Category.PLAYER));
-		mods.add(new AutoRespawn("Auto-Respawn", Category.PLAYER));
+		mods.add(new AutoMine("AutoMine", Category.PLAYER));
+		mods.add(new AutoRespawn("AutoRespawn", Category.PLAYER));
 		mods.add(new FastPlace("FastPlace", Category.PLAYER));
 		mods.add(new FreeCam("FreeCam", Category.PLAYER));
 		mods.add(new FullBright("FullBright",Keyboard.KEY_B, Category.PLAYER));
