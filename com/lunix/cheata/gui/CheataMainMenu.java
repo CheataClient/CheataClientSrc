@@ -125,7 +125,7 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
     	try {
 			if(!"127.0.0.1".equals(InetAddress.getLocalHost().getHostAddress().toString())){
 				try {
-			    	URL u = new URL("https://raw.githubusercontent.com/CheataClient/CheataClient/master/VERSION");
+			    	URL u = new URL("https://raw.githubusercontent.com/CheataClient/CheataClientSrc/master/VERSION");
 			    	URLConnection conn = u.openConnection();
 			    	BufferedReader in = new BufferedReader(
 			    	                        new InputStreamReader(
@@ -277,11 +277,11 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
         }
         
         if(!needsUpdate){
-        	this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72, 98, 20, I18n.format("menu.options", new Object[0])));
-            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72, 98, 20, I18n.format("menu.quit", new Object[0])));
+        	this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 4, 98, 20, I18n.format("menu.options", new Object[0])));
+            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 4, 98, 20, I18n.format("menu.quit", new Object[0])));
         }else{
-        	this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 24, 98, 20, I18n.format("menu.options", new Object[0])));
-            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 24, 98, 20, I18n.format("menu.quit", new Object[0])));
+        	this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 28, 98, 20, I18n.format("menu.options", new Object[0])));
+            this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 28, 98, 20, I18n.format("menu.quit", new Object[0])));
         }
 
         synchronized (this.threadLock)
@@ -314,11 +314,12 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
      */
     private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
     {
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer", new Object[0])));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer", new Object[0])));
-        this.buttonList.add(new GuiButton(5, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("Language", new Object[0])));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, (p_73969_1_) - 20, I18n.format("menu.singleplayer", new Object[0])));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, (p_73969_1_ + p_73969_2_ * 1) - 20, I18n.format("menu.multiplayer", new Object[0])));
+        this.buttonList.add(new GuiButton(5, this.width / 2 - 100, (p_73969_1_ + p_73969_2_ * 2) - 20, I18n.format("Language", new Object[0])));
+        this.buttonList.add(new GuiButton(21, this.width / 2 - 100, (p_73969_1_ + p_73969_2_ * 3) - 20, I18n.format("Cheata Menu", new Object[0])));
         if (needsUpdate)
-    		this.buttonList.add(new GuiButton(24, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 3, I18n.format("Update " + Client.getName(), new Object[0])));
+    		this.buttonList.add(new GuiButton(24, this.width / 2 - 100, (p_73969_1_ + p_73969_2_ * 4) - 20, I18n.format("Update " + Client.getName(), new Object[0])));
     }
 
     /**
@@ -376,12 +377,17 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
         {
             ISaveFormat isaveformat = this.mc.getSaveLoader();
             WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
-
             if (worldinfo != null)
             {
                 this.mc.displayGuiScreen(new GuiYesNo(this, I18n.format("selectWorld.deleteQuestion", new Object[0]), "\'" + worldinfo.getWorldName() + "\' " + I18n.format("selectWorld.deleteWarning", new Object[0]), I18n.format("selectWorld.deleteButton", new Object[0]), I18n.format("gui.cancel", new Object[0]), 12));
             }
         }
+        
+        if (button.id == 21)
+        {
+        	this.mc.displayGuiScreen(new CheataGui(this));
+        }
+        
         if (button.id == 24)
         {
 			try {
@@ -427,6 +433,181 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
 
             this.mc.displayGuiScreen(this);
         }
+    }
+
+    /**
+     * Draws the main menu panorama
+     */
+    private void drawPanorama(int p_73970_1_, int p_73970_2_, float p_73970_3_)
+    {
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        GlStateManager.matrixMode(5889);
+        GlStateManager.pushMatrix();
+        GlStateManager.loadIdentity();
+        Project.gluPerspective(120.0F, 1.0F, 0.05F, 10.0F);
+        GlStateManager.matrixMode(5888);
+        GlStateManager.pushMatrix();
+        GlStateManager.loadIdentity();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
+        GlStateManager.rotate(90.0F, 0.0F, 0.0F, 1.0F);
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.disableCull();
+        GlStateManager.depthMask(false);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        int i = 8;
+
+        for (int j = 0; j < i * i; ++j)
+        {
+            GlStateManager.pushMatrix();
+            float f = ((float)(j % i) / (float)i - 0.5F) / 64.0F;
+            float f1 = ((float)(j / i) / (float)i - 0.5F) / 64.0F;
+            float f2 = 0.0F;
+            GlStateManager.translate(f, f1, f2);
+            GlStateManager.rotate(MathHelper.sin(((float)this.panoramaTimer + p_73970_3_) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(-((float)this.panoramaTimer + p_73970_3_) * 0.1F, 0.0F, 1.0F, 0.0F);
+
+            for (int k = 0; k < 6; ++k)
+            {
+                GlStateManager.pushMatrix();
+
+                if (k == 1)
+                {
+                    GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+                }
+
+                if (k == 2)
+                {
+                    GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+                }
+
+                if (k == 3)
+                {
+                    GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+                }
+
+                if (k == 4)
+                {
+                    GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
+                }
+
+                if (k == 5)
+                {
+                    GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
+                }
+
+                this.mc.getTextureManager().bindTexture(titlePanoramaPaths[k]);
+                vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                int l = 255 / (j + 1);
+                float f3 = 0.0F;
+                vertexbuffer.pos(-1.0D, -1.0D, 1.0D).tex(0.0D, 0.0D).color(255, 255, 255, l).endVertex();
+                vertexbuffer.pos(1.0D, -1.0D, 1.0D).tex(1.0D, 0.0D).color(255, 255, 255, l).endVertex();
+                vertexbuffer.pos(1.0D, 1.0D, 1.0D).tex(1.0D, 1.0D).color(255, 255, 255, l).endVertex();
+                vertexbuffer.pos(-1.0D, 1.0D, 1.0D).tex(0.0D, 1.0D).color(255, 255, 255, l).endVertex();
+                tessellator.draw();
+                GlStateManager.popMatrix();
+            }
+
+            GlStateManager.popMatrix();
+            GlStateManager.colorMask(true, true, true, false);
+        }
+
+        vertexbuffer.setTranslation(0.0D, 0.0D, 0.0D);
+        GlStateManager.colorMask(true, true, true, true);
+        GlStateManager.matrixMode(5889);
+        GlStateManager.popMatrix();
+        GlStateManager.matrixMode(5888);
+        GlStateManager.popMatrix();
+        GlStateManager.depthMask(true);
+        GlStateManager.enableCull();
+        GlStateManager.enableDepth();
+    }
+
+    /**
+     * Rotate and blurs the skybox view in the main menu
+     */
+    private void rotateAndBlurSkybox(float p_73968_1_)
+    {
+        this.mc.getTextureManager().bindTexture(this.backgroundTexture);
+        GlStateManager.glTexParameteri(3553, 10241, 9729);
+        GlStateManager.glTexParameteri(3553, 10240, 9729);
+        GlStateManager.glCopyTexSubImage2D(3553, 0, 0, 0, 0, 0, 256, 256);
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.colorMask(true, true, true, false);
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        GlStateManager.disableAlpha();
+        int i = 3;
+
+        for (int j = 0; j < i; ++j)
+        {
+            float f = 1.0F / (float)(j + 1);
+            int k = this.width;
+            int l = this.height;
+            float f1 = (float)(j - i / 2) / 256.0F;
+            vertexbuffer.pos((double)k, (double)l, (double)this.zLevel).tex((double)(0.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            vertexbuffer.pos((double)k, 0.0D, (double)this.zLevel).tex((double)(1.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            vertexbuffer.pos(0.0D, 0.0D, (double)this.zLevel).tex((double)(1.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            vertexbuffer.pos(0.0D, (double)l, (double)this.zLevel).tex((double)(0.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+        }
+
+        tessellator.draw();
+        GlStateManager.enableAlpha();
+        GlStateManager.colorMask(true, true, true, true);
+    }
+
+    /**
+     * Renders the skybox in the main menu
+     */
+    private void renderSkybox(int p_73971_1_, int p_73971_2_, float p_73971_3_)
+    {
+        this.mc.getFramebuffer().unbindFramebuffer();
+        GlStateManager.viewport(0, 0, 256, 256);
+        this.drawPanorama(p_73971_1_, p_73971_2_, p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_);
+        this.rotateAndBlurSkybox(p_73971_3_);
+        this.mc.getFramebuffer().bindFramebuffer(true);
+        GlStateManager.viewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
+        float f = this.width > this.height ? 120.0F / (float)this.width : 120.0F / (float)this.height;
+        float f1 = (float)this.height * f / 256.0F;
+        float f2 = (float)this.width * f / 256.0F;
+        int i = this.width;
+        int j = this.height;
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        vertexbuffer.pos(0.0D, (double)j, (double)this.zLevel).tex((double)(0.5F - f1), (double)(0.5F + f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        vertexbuffer.pos((double)i, (double)j, (double)this.zLevel).tex((double)(0.5F - f1), (double)(0.5F - f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        vertexbuffer.pos((double)i, 0.0D, (double)this.zLevel).tex((double)(0.5F + f1), (double)(0.5F - f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        vertexbuffer.pos(0.0D, 0.0D, (double)this.zLevel).tex((double)(0.5F + f1), (double)(0.5F + f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        tessellator.draw();
+    }
+
+    /**
+     * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
+     */
+    public void drawScreen(int mouseX, int mouseY, float partialTicks)
+    {
+    	this.drawDefaultBackground();
+    	GL11.glPushMatrix();
+    	GL11.glScaled(7, 6, 5);
+    	String var1 = "Cheata";
+        this.drawCenteredString(mc.fontRendererObj, var1, ((this.width / 7) / 2), ((this.height / 6) / 4) - 5, 0xffb825);
+    	GL11.glPopMatrix();
+    	if(needsUpdate){
+    		this.drawRect(0, 0, this.width, 20, Client.getColor());
+    		this.drawCenteredString(mc.fontRendererObj, "New version of Cheata found : " + updateVersion, this.width / 2, 6, Client.getColor());
+    	}
+        super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     /**
