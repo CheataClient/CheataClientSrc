@@ -9,6 +9,7 @@
 package com.lunix.cheata.mod.mods.movement;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 
 import com.lunix.cheata.Client;
@@ -16,6 +17,7 @@ import com.lunix.cheata.mod.Mod;
 import com.lunix.cheata.mod.ModManager;
 import com.lunix.cheata.mod.mods.player.NoWater;
 import com.lunix.cheata.utils.Category;
+import com.lunix.cheata.utils.packet.PacketUtils;
 
 public class WaterWalk extends Mod{
 
@@ -35,6 +37,7 @@ public class WaterWalk extends Mod{
 	@Override
 	public void onUpdate() {
 		legit = Client.getValueManager().getValueByName("WaterWalkLegit").getValueBoolean();
+		PacketUtils.sendPacket(new CPacketPlayer(true));
 		if(legit){
 			if(mc.thePlayer.isInWater()){
 				mc.gameSettings.keyBindJump.pressed = true;
@@ -42,7 +45,7 @@ public class WaterWalk extends Mod{
 				mc.gameSettings.keyBindJump.pressed = false;
 			}
 		}else{
-			if((mc.theWorld.getBlockState(new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 0.1, mc.thePlayer.posZ)).getBlock() == Blocks.water) || (mc.theWorld.getBlockState(new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 0.1, mc.thePlayer.posZ)).getBlock() == Blocks.lava)){
+			if(mc.theWorld.getBlockState(new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 0.1, mc.thePlayer.posZ)).getBlock() == Blocks.water){
 				mc.thePlayer.motionY = 0;
 				mc.thePlayer.onGround = true;
 			}

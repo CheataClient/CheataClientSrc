@@ -10,6 +10,7 @@ package com.lunix.cheata.utils.mod;
 
 import java.util.ArrayList;
 
+import com.lunix.cheata.mod.mods.combat.AutoDisconect;
 import com.lunix.cheata.mod.mods.misc.Derp;
 import com.lunix.cheata.mod.mods.movement.BunnyHop;
 import com.lunix.cheata.mod.mods.movement.FastLadder;
@@ -35,6 +36,7 @@ public class ModValueManager {
 		values.add(new ModValue("FastLadderNCP", FastLadder.ncp));
 		values.add(new ModValue("FlightSpeed", 5, 50, 5, Flight.flySpeed));
 		values.add(new ModValue("GlideSpeed", 0,  0.875, 0.125, Glide.speed));
+		values.add(new ModValue("LeaveHealth", 1, 19, 1, AutoDisconect.leaveHealth));
 		values.add(new ModValue("NerdPoleFast", NerdPole.fast));
 		values.add(new ModValue("PlaceDelay", 1, 4, 1, FastPlace.delay));
 		values.add(new ModValue("SneakLegit", Sneak.legit));

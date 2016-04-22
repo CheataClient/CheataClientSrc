@@ -30,6 +30,7 @@ import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
@@ -144,11 +145,11 @@ public class CheataMainMenu extends GuiScreen implements GuiYesNoCallback{
 			    		mc.logger.info("Current pre-release is " + Double.toString(Client.getVer()));
 			    	}
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.out.println("Unable to open github page");
 				}
 			}
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			System.out.println("Unable to connect to host");
 		}
     	Client.setInGame(false);
         this.openGLWarning2 = field_96138_a;

@@ -36,6 +36,15 @@ public class FileManager {
 		}
 	}
 	
+	public static void deleteFile(String fileName){
+		try{
+			File file = new File(dir.getAbsolutePath(), fileName);
+			file.delete();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public static File getDir(){
 		return dir;
 	}

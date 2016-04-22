@@ -11,8 +11,6 @@ package com.lunix.cheata.utils.file.mod;
 import java.io.File;
 import java.util.Map.Entry;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.Minecraft;
 
 import com.google.gson.JsonElement;

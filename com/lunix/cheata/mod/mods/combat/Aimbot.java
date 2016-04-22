@@ -22,7 +22,7 @@ import com.lunix.cheata.mod.mods.player.FreeCam;
 import com.lunix.cheata.utils.Category;
 
 public class Aimbot extends Mod{
-
+	
 	public Aimbot(String name, Category category) {
 		super(name, category);
 	}
@@ -85,5 +85,5 @@ public class Aimbot extends Mod{
 			mc.thePlayer.rotationYaw + MathHelper.wrapAngleTo180_float(yaw - mc.thePlayer.rotationYaw), mc.thePlayer.rotationPitch + MathHelper.wrapAngleTo180_float(pitch - mc.thePlayer.rotationPitch)
 		};
 	}
-
+	
 }
