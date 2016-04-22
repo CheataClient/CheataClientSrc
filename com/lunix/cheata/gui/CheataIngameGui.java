@@ -19,26 +19,33 @@ import com.lunix.cheata.utils.Category;
 
 public class CheataIngameGui extends GuiIngame{
 
+	public static boolean shouldRender = true;
+
 	public CheataIngameGui(Minecraft mcIn) {
 		super(mcIn);
 	}
 	
 	@Override
 	protected void func_184048_a(ScaledResolution p_184048_1_) {
-		Client.getFunctionMethods().onRender();
-		
-		int countY = 1;
-		for(Mod mod : Client.getModManager().mods){
-			if(mod.isEnabled() && !mod.isCategory(Category.NONE) && !(mod.getClass() == Client.getModManager().getMod(Panic.class).getClass())){
-				mod.onRender();
-				drawString(Minecraft.getMinecraft().fontRendererObj, mod.getName(), 1, 12 * countY, Client.getColor());
-				countY++;
+		if(shouldRender){
+			Client.getFunctionMethods().onRender();
+			
+			int countY = 1;
+			for(Mod mod : Client.getModManager().mods){
+				if(mod.isEnabled() && !mod.isCategory(Category.NONE) && !(mod.getClass() == Client.getModManager().getMod(Panic.class).getClass())){
+					mod.onRender();
+					drawString(Minecraft.getMinecraft().fontRendererObj, mod.getName(), 1, 12 * countY, Client.getColor());
+					countY++;
+				}
 			}
+			
+			drawString(Minecraft.getMinecraft().fontRendererObj, Client.getName() + " - " + Client.getVer(), 1, 2, Client.getColorDarker());
+
+			Client.getGuiManager().renderPinned();
+		}else{
+			
 		}
 		
-		drawString(Minecraft.getMinecraft().fontRendererObj, Client.getName() + " - " + Client.getVer(), 1, 2, Client.getColorDarker());
-
-		Client.getGuiManager().renderPinned();
 				
 		super.func_184048_a(p_184048_1_);
 	}

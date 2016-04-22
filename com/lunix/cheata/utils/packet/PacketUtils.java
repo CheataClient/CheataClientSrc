@@ -18,11 +18,6 @@ public class PacketUtils {
 	public static void sendPacket(Packet packetIn) {
 		Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(packetIn);
 	}
-
-	public static void sendPacketDirect(Packet packetIn) {
-		NetworkPacket.networkManager.sendPacket(packetIn);
-	}
-
 	public static NetworkManager getNetworkManager(){
 		return NetworkPacket.networkManager;
 	}

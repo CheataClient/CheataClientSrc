@@ -11,6 +11,8 @@ package com.lunix.cheata.mod;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import net.minecraft.client.Minecraft;
+
 import org.lwjgl.input.Keyboard;
 
 import com.lunix.cheata.mod.mods.combat.*;
@@ -32,6 +34,7 @@ public class ModManager {
 		mods.add(new AutoFish("AutoFish", Category.MISC));
 		mods.add(new Derp("Derp", Category.MISC));
 		mods.add(new Drop("Drop", Category.MISC));
+		mods.add(new Legit("Legit", Category.MISC));
 		mods.add(new NoPumkin("NoPumkin", Category.MISC));
 		mods.add(new Panic("Panic", Keyboard.KEY_P, Category.MISC));
 		mods.add(new SkinDerp("SkinDerp", Category.MISC));
@@ -41,6 +44,7 @@ public class ModManager {
 		 */
 		mods.add(new Aimbot("Aimbot", Category.COMBAT));
 		mods.add(new AutoDisconect("AutoDisconnect", Category.COMBAT));
+		mods.add(new ChestStealer("ChestStealer", Category.COMBAT));
 		mods.add(new HitAimbot("HitAimbot", Category.COMBAT));
 		mods.add(new KillAura("KillAura", Category.COMBAT));
 		
@@ -78,8 +82,10 @@ public class ModManager {
 		/*
 		 * World
 		 */
+		mods.add(new InstantMine("InstantMine", Category.WORLD));
 		mods.add(new NoEntityAI("NoEntityAI", Category.WORLD));
 		mods.add(new Nuker("Nuker", Category.WORLD));
+		mods.add(new SpeedMine("SpeedMine", Category.WORLD));
 		mods.add(new Timer("Timer", Category.WORLD));
 	}
 	

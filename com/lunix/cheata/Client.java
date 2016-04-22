@@ -33,7 +33,7 @@ import com.lunix.cheata.utils.mod.ModValueManager;
 public class Client {
 
 	private static String name = "Cheata";
-	private static double ver = 1.2;
+	private static double ver = 1.21;
 	private static String auth = "LUNiX";
 	private static int color = 0x75ffb825;
 	private static int colorDarker = 0xffb82500;
